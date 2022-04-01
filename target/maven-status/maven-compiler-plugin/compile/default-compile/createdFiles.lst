@@ -1,0 +1,10 @@
+com\tomcat\imitate\catalina\Connector.class
+com\tomcat\imitate\classloader\CustomClassLoader.class
+com\tomcat\imitate\catalina\Engine.class
+com\tomcat\imitate\catalina\Service.class
+com\tomcat\imitate\classloader\WebappClassLoader.class
+com\tomcat\imitate\catalina\Host.class
+com\tomcat\imitate\catalina\Context.class
+com\tomcat\imitate\catalina\Server.class
+com\tomcat\imitate\classloader\JspClassLoader.class
+com\tomcat\imitate\watcher\ContextFileChangeWatcher.class
