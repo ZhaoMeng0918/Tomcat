@@ -1,4 +1,4 @@
-package com.tomcat.imitate;
+package com.tomcat.imitate.utils;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -13,8 +13,8 @@ import java.util.Map;
 
 /**
  * @ClassName HttpMessageParser
- * @Description TODO
- * @Author Administrator
+ * @Description http解析类
+ * @Author GerryZhao
  * @Date 2022-03-31 21:12
  * @Version 1.0.0
  */
@@ -129,7 +129,7 @@ public class HttpMessageParser {
             return;
         }
 
-        // fixme 这种时候，可能是通过 chunked 方式发送数据，待验证这种支持方式是否准确
+        // 这种时候，可能是通过 chunked 方式发送数据，待验证这种支持方式是否准确
         StringBuilder message = new StringBuilder();
         int ch;
         while (reader.ready()) {
@@ -161,7 +161,6 @@ public class HttpMessageParser {
         buildResponseMessage(httpResponse, builder);
         return builder.toString();
     }
-
 
     private static void buildResponseLine(Response response, StringBuilder stringBuilder) {
         stringBuilder.append(response.getVersion()).append(" ").append(response.getCode()).append(" ")

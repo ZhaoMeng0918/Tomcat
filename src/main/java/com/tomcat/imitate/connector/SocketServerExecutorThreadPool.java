@@ -1,5 +1,6 @@
-package com.tomcat.imitate;
+package com.tomcat.imitate.connector;
 
+import com.tomcat.imitate.startup.Bootstrap;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayDeque;

@@ -1,5 +1,8 @@
-package com.tomcat.imitate;
+package com.tomcat.imitate.connector;
 
+import com.tomcat.imitate.config.Config;
+import com.tomcat.imitate.startup.Bootstrap;
+import com.tomcat.imitate.utils.HttpMessageParser;
 import lombok.SneakyThrows;
 import org.apache.log4j.Logger;
 
@@ -20,14 +23,12 @@ public class SocketServerListenHandler {
 
     private ServerSocket serverSocket;
 
+    private final String host = Config.getInstance().getHost();
+    private final int port = Config.getInstance().getPort();
+
     private SocketServerExecutorThreadPool threadPool;
 
-    // 默认端口号: 8080
     public SocketServerListenHandler() {
-        this(8080);
-    }
-
-    public SocketServerListenHandler(int port) {
         try {
             serverSocket = new ServerSocket(port);
             threadPool = new SocketServerExecutorThreadPool(30, 1000,
@@ -40,7 +41,7 @@ public class SocketServerListenHandler {
     }
 
     public void listenClientConnect() throws IOException {
-        logger.info("启动serverSocket，监听端口: " + serverSocket.getLocalPort());
+        logger.info("启动serverSocket " + host + ":" + serverSocket.getLocalPort());
         while (true) {
             try {
                 Socket clientConnectSocket = serverSocket.accept();
@@ -49,7 +50,6 @@ public class SocketServerListenHandler {
                     @Override
                     public void run() {
                         HttpMessageParser.Request httpRequest = HttpMessageParser.parse2request(clientConnectSocket.getInputStream());
-                        logger.info("接收请求: " + httpRequest.toString());
 
                     }
                 });
